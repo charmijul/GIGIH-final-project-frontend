@@ -1,70 +1,126 @@
-# Getting Started with Create React App
+#GIGIH Final Project Fronted
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+----
+1. System Description
+```
+This system is designed to provide you with an interactive experience in exploring videos and engaging with the community, all while discovering products that can fulfill your needs and interests. We offer an environment where you can discover interesting video content, see perspectives from other users through comments, and find related products that can enhance your experience. This system is built using the React JS library.
+```
 
-## Available Scripts
+----
+2. Featrues
+a. User can open, at least two page
+i. Home
+ii. Video Detail Page
+b. User can see video list with thumbnail from YouTube in home page
+c. User can click each video and go to video detail page
+d. User can see list products, embed YouTube, list comment, and form submit
+comment
+e. User just need input name and comment when submit comment in form
+f. User can see their comment in list comment section after success submit
+comment
 
-In the project directory, you can run:
+----
+3. Folder Structure
+* **Index.js**
+* **App.js**
+* **api.js**
+* **component/**
+  - Home.component.jsx
+  - VideoDetail.component.jsx
+* **css/**
+  - home-style.css
+  - videoDetail-style.css
+* **hooks/**
+  - useComments.jsx
+  - useCurrencyFormatter.jsx
+* **pages/**
+  - Home.page.js
+  - VideoDetail.page.js
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+----
+3. Route Structure list
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+**GET /**
+----
+  Returns all videos in the database system.
+* **URL Params**  
+  None
+* **Data Params**  
+  None
+* **Headers**  
+  Content-Type: application/json  
+* **Success Response:**  
+* **Code:** 200  
+  **Content:**  
+```
+{
+  videos: [
+           {<videos_object>},
+           {<videos_object>},
+           {<videos_object>},
+           ...
+         ]
+}
+```
+* **Error Response:**  
+  * **Code:** 400  
+  **Content:** `{ error : error.message }`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+**GET /videos/:id**
+----
+  Returns the specified videos, show related product and all related comment.
+* **URL Params**  
+  *Required:* `id=ObjectId`
+* **Data Params**  
+  None
+* **Headers**  
+  Content-Type: application/json
+* **Success Response:** 
+* **Code:** 201  
+  **Content:**  `[
+    {<video_object>},
+    {<detailProduct_ob>},
+    {<comments_object>}
+  ]` 
+* **Error Response:**  
+  * **Code:** 404  
+  **Content:** `{ error : "Page Not Found" }`  
+  OR  
+  * **Code:** 500  
+  **Content:** `{ message: "Terjadi kesalahan saat mencari data." }`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**POST /videos/:id/comment**
+----
+  Creates a new comment for the related video and returns the video detail.
+* **URL Params**  
+  *Required:* `id=ObjectId`
+* **Headers**  
+  Content-Type: application/json  
+* **Data Params**  
+```
+  {
+    username: string,
+    comment: string,
+    video: ObjectId
+  }
+```
+* **Success Response:**  
+* **Code:** 201  
+  **Content:**  `{ <comment_object> }`
+  * **Error Response:**  
+  * **Code:** 404  
+  **Content:** `{ error : "Page Not Found" }`  
+  OR  
+  * **Code:** 400 
+  **Content:** `{ error: error.message }`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+----
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+4. How To Run
+ - open terminal and go to directory where you save my project or just use git bash on the folder.
+ - run command : "npm run build".
+ - run command : "npm start".
+ - open "http://localhost:3000/" on your browser.
