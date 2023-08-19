@@ -1,0 +1,60 @@
+.home-container {
+  background: linear-gradient(to bottom, #16222a, #3a6073);
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.video-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.video-card {
+  margin: 20px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 300px;
+  height: 400px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.video-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.video-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+a {
+  display: inline-block;
+  background-color: #3498db;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+a:hover {
+  background-color: #2980b9;
+}
